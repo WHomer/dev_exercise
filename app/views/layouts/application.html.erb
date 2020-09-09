@@ -5,26 +5,75 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
+<%# <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+    <div class="dropdown-menu">
+      <a class="dropdown-item" href="#">Action</a>
+      <a class="dropdown-item" href="#">Another action</a>
+      <a class="dropdown-item" href="#">Something else here</a>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" href="#">Separated link</a>
+    </div>
+  </li> %>
   <body>
-    <% if current_user %>
-      <!-- current_user will return true if a user is logged in -->
-      <%= "Logged in as #{current_user.email}" %> | <%= link_to 'Home', root_path %> | <%= link_to 'Log Out', logout_path, method: :delete %>
-    <% else %>
-      <!-- not logged in -->
-      <%= link_to 'Home', root_path %> | <%= link_to 'Log In', login_path %> or <%= link_to 'Sign Up', new_account_path %>
-    <% end %>
-    <hr>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <% if current_user %>
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle text-dark" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <%= image_tag 'listen360-logo', height: '30' %> <strong>Listen360 - Alpharetta, GA</strong>
+              </a>
+              <div class="dropdown-menu">
+                <%= link_to 'Home', root_path, class: 'dropdown-item' %>
+                <a class="dropdown-item" href="/organizations">Organizations</a>
+              </div>
+            </li>
+          </ul>
+
+          <ul class="navbar-nav justify-content-end">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <%= "Logged in as #{current_user.email}" %>
+                <img src="https://cdn.onlinewebfonts.com/svg/img_415067.png" alt="person_icon" class="rounded-0" width="25">
+              </a>
+              <div class="dropdown-menu">
+                <%= link_to 'Log Out', logout_path, method: :delete, class: 'dropdown-item' %>
+              </div>
+            </li>
+          </ul>
+        <% else %>
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <%= link_to 'Log In', login_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Sign Up', new_account_path, class: 'nav-link' %>
+          </li>
+        </ul>
+        <% end %>
+    </nav>
+
     <% if notice %>
-      <%= notice %>
+      <div class="alert alert-success" role="alert">
+        <%= notice %>
+      </div>
     <% end %>
     
     <% if alert %>
-      <%= alert %>
+      <div class="alert alert-danager" role="alert">
+        <%= alert %>
+      </div>
     <% end %>
-    <%= yield %>
+    <div class="container">
+      <%= yield %>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
   </body>
 </html>

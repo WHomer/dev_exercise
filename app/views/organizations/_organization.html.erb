@@ -1,5 +1,7 @@
-<ul>
-  <li>
-    <%= link_to(organization.name, organization_path(organization)) %>
-  </li>
-</ul>
+<section class="mb-5">
+  <h1>
+    <%= link_to(organization.name, organization_path(organization), class: 'text-dark') %>
+  </h1>
+  <hr>
+  <p><%= organization.description %></p>
+</section>
