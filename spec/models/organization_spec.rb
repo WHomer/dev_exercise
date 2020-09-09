@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Organization, type: :model do
+  context 'relationships' do
+    it { should have_many(:users).through(:memberships) }
+  end
+
   context 'validations' do
     it "is valid with a name and description" do
       organization = FactoryBot.build(:organization)
