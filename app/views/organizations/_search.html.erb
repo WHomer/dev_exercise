@@ -1,0 +1,5 @@
+<%= form_with model: Organization.new, method: :get, local: true do |f| %>
+  <%= f.label :name, "Search for:" %>
+  <%= f.text_field :name %>
+  <%= f.submit "Search" %>
+<% end %>
